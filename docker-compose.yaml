@@ -1,11 +1,12 @@
 services:
+
   app:
     build:
       .
-    command:
-      - python src/app.py
     depends_on:
       - postgres
+    ports:
+      - ${APP_PORT}:${APP_PORT}
 
   postgres:
     image: postgres:latest
@@ -28,7 +29,6 @@ services:
     restart: unless-stopped
     tty: true
     stdin_open: true
-
 
 volumes:
   postgres-data:
