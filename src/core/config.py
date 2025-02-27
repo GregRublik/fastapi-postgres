@@ -1,4 +1,4 @@
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import Field
 
 
@@ -9,8 +9,10 @@ class DbSettings(BaseSettings):
     db_name: str = Field(json_schema_extra={'env': 'DB_NAME'})
     db_port: int = Field(json_schema_extra={'env': 'DB_PORT'})
 
-    class Config:
-        env_prifix = "DB_"
+    # class Config:
+    #     env_prefix = "DB_"
+
+    model_config = SettingsConfigDict(env_prefix="DB_", env_file=".env", extra="ignore")
 
     @property
     def dsn(self):
@@ -22,10 +24,11 @@ class DbSettings(BaseSettings):
 
 
 class Settings(BaseSettings):
+    app_port: int = Field(json_schema_extra={'env': 'DB_HOST'})
+
     db: DbSettings
 
+    model_config = SettingsConfigDict(env_prefix="APP_", env_file=".env", extra="ignore")
 
-def get_settings():
-    return Settings(
-        db=DbSettings()
-    )
+
+settings = Settings(db=DbSettings())
