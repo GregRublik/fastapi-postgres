@@ -13,11 +13,6 @@ if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
 target_metadata = Base.metadata
-
-config.set_main_option(
-    "sqlalchemy.url",
-    "postgresql+asyncpg://admin:00000000@localhost:5432/postgres" + "?async_fallback=True"
-)
 config.set_main_option("sqlalchemy.url", settings.db.dsn_asyncpg + "?async_fallback=True")
 
 

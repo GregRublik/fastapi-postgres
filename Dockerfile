@@ -6,7 +6,7 @@ COPY . .
 
 RUN pip install -r requirements.txt
 
-RUN alembic revision --autogenerate -m 'initial' #создать миграцию
+#RUN alembic revision --autogenerate -m 'initial' #создать миграцию
 
 #RUN alembic upgrade head #применить миграцию
 

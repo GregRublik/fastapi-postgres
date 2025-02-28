@@ -6,5 +6,13 @@
 - DB_NAME
 - APP_PORT
 
-Выполнить команду: 
+Выполнить команду:
+    
     docker compose up --build
+    
+После разворачивания контейнеров можно выполнить миграции
+
+    alembic revision --autogenerate -m 'initial'
+
+    alembic upgrade head
+
